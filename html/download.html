@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Downloading Solara...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1e003c, #450068);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    a.download-link {
+      margin-top: 1.5rem;
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #7a2dfc;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    a.download-link:hover {
+      background-color: #a64efc;
+    }
+  </style>
+  <script>
+    async function downloadFile() {
+      const url = "https://raw.githubusercontent.com/SolaraDevelopment/solara/main/BootStrapperNew.bat";
+
+      try {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        const downloadUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = "BootStrapperNew.bat";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(downloadUrl);
+      } catch (err) {
+        console.error("Download failed:", err);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", downloadFile);
+  </script>
+</head>
+<body>
+  <h1>Thanks for downloading Solara</h1>
+  <p>Your download should begin automatically.</p>
+  <p>If it doesn't, click the button below:</p>
+  <a class="download-link" href="#" onclick="downloadFile()">Click here to download manually</a>
+</body>
+</html>
