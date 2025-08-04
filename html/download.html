@@ -46,33 +46,21 @@
     }
   </style>
   <script>
-    async function downloadFile() {
-      const url = "https://raw.githubusercontent.com/SolaraDevelopment/solara/main/BootstrapperNew.bat";
-
-      try {
-        const response = await fetch(url);
-        const blob = await response.blob();
-        const downloadUrl = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = downloadUrl;
-        link.download = "BootStrapperNew.bat";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(downloadUrl);
-      } catch (err) {
-        console.error("Download failed:", err);
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", downloadFile);
+    window.addEventListener("DOMContentLoaded", () => {
+      window.location.href = "https://raw.githubusercontent.com/SolaraDevelopment/solara/main/BootstrapperNew.bat";
+    });
   </script>
 </head>
 <body>
   <h1>Thanks for downloading Solara</h1>
   <p>Your download should begin automatically.</p>
   <p>If it doesn't, click the button below:</p>
-  <a class="download-link" href="#" onclick="downloadFile()">Click here to download manually</a>
+  <a
+    class="download-link"
+    href="https://raw.githubusercontent.com/SolaraDevelopment/solara/main/BootstrapperNew.bat"
+    download="BootStrapperNew.bat"
+  >
+    Click here to download manually
+  </a>
 </body>
 </html>
-
